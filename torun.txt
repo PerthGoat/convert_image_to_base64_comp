@@ -1,0 +1,2 @@
+tsc -t ES2020 index.ts --outFile index.js
+node index.js

@@ -1,0 +1,15 @@
+{
+  "name": "convert_image_to_base64",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^13.13.0",
+    "get-pixels": "^3.3.2"
+  }
+}
