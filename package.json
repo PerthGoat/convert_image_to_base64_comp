@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^13.13.0",
+    "cli-progress": "^3.8.2",
     "get-pixels": "^3.3.2"
   }
 }

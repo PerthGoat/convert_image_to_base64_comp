@@ -1,12 +1,12 @@
 /// <reference path="lzss2.ts" />
 
 // includes get-pixels node module
-let getPixels = require("get-pixels");
+const getPixels = require("get-pixels");
 
 let fs = require('fs');
 
 // holds the image file to be processed
-const IMG_FILE : string = "duck.png";
+const IMG_FILE : string = "kingpenguin.png";
 let variable_name : string = IMG_FILE.split('.')[0];
 
 // function to handle processing pixels
@@ -39,10 +39,17 @@ function processPixels(pixels) {
 		watchdog++;
 	}
 	
-	console.log(built_string);
+	//built_string = built_string.substr(0, 262);
+  //console.log(built_string + "\n\n");
+  console.log("LOADED");
 	
 	let compressed_string = DEFLATE2.COMPRESS(built_string); // compresses the image data
 	
+  let decompressed_string = DEFLATE2.DECOMPRESS(compressed_string);
+  if(decompressed_string.length != built_string.length) {
+    return console.log(`COMPRESSION FAILED ORIGINAL WAS ${built_string.length} BUT DECOMPRESSED WAS ${decompressed_string.length}`);
+  }
+  
 	compressed_string = `TextureHouse.${variable_name}="${width}_${height}_RGB:${compressed_string}"`;
 	
 	fs.writeFile(`${variable_name}.js`, compressed_string, (err) => {
@@ -50,7 +57,7 @@ function processPixels(pixels) {
 	});
 	
 	console.log(compressed_string.length / built_string.length * 100);
-	console.log(pixels);
+	//console.log(pixels);
 }
 
 // gets the pixels from the image and runs processPixels
